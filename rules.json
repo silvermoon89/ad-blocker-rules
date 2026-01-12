@@ -1,0 +1,914 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-01-12T00:00:00Z",
+  "description": "Windows 常见国产软件广告弹窗拦截规则库",
+  "software": [
+    {
+      "id": "sogou-pinyin",
+      "name": "搜狗输入法",
+      "category": "输入法",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\SogouInput",
+          "SOFTWARE\\WOW6432Node\\SogouInput"
+        ]
+      },
+      "rules": [
+        {
+          "name": "搜狗输入法 - 云推广弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "SogouCloud.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "搜狗输入法 - 工具弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "SGTool.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "搜狗输入法 - 新闻弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "SogouNews.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "搜狗输入法 - 皮肤推荐",
+          "conditions": [{"type": "ClassNameContains", "value": "SogouExplorer"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        }
+      ]
+    },
+    {
+      "id": "360-security",
+      "name": "360安全卫士",
+      "category": "安全软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\360Safe",
+          "SOFTWARE\\WOW6432Node\\360Safe"
+        ]
+      },
+      "rules": [
+        {
+          "name": "360 - 托盘弹窗提示",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "360"},
+            {"type": "ClassNameContains", "value": "Q360InfoTip"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        },
+        {
+          "name": "360 - 小尺寸广告弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "360"},
+            {"type": "WindowSizeRange", "value": {"min_w": 200, "max_w": 500, "min_h": 200, "max_h": 400}}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 70
+        },
+        {
+          "name": "360 - 升级弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "LiveUpdate360.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        },
+        {
+          "name": "360 - 弹窗广告进程",
+          "conditions": [{"type": "ProcessNameEquals", "value": "popwnd.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "2345-series",
+      "name": "2345系列软件",
+      "category": "工具软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\2345Explorer",
+          "SOFTWARE\\WOW6432Node\\2345"
+        ]
+      },
+      "rules": [
+        {
+          "name": "2345 - 浏览器弹窗",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "2345Explorer.exe"},
+            {"type": "ClassNameContains", "value": "MiniTipWnd"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "2345 - 看图王广告",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "2345PicViewer.exe"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "2345 - 保护进程弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "Protect2345.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "2345 - 实时保护弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "2345RTProtect.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "wps-office",
+      "name": "WPS Office",
+      "category": "办公软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Kingsoft\\Office",
+          "SOFTWARE\\WOW6432Node\\Kingsoft\\Office"
+        ]
+      },
+      "rules": [
+        {
+          "name": "WPS - 广告推送",
+          "conditions": [{"type": "ProcessNameEquals", "value": "wpsnotify.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "WPS - 推广中心",
+          "conditions": [{"type": "ProcessNameEquals", "value": "wpscenter.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "WPS - 云服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "wpscloudsvr.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "WPS - 热点新闻",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "Kingsoft"},
+            {"type": "TitleContains", "value": "热点"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "ludashi",
+      "name": "鲁大师",
+      "category": "系统工具",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\ludashi",
+          "SOFTWARE\\WOW6432Node\\ludashi"
+        ]
+      },
+      "rules": [
+        {
+          "name": "鲁大师 - 主程序弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "ComputerZ_CN.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 70
+        },
+        {
+          "name": "鲁大师 - 类名弹窗",
+          "conditions": [{"type": "ClassNameContains", "value": "LuDaShi"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 70
+        },
+        {
+          "name": "鲁大师 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "ludashiservice.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "driver-genius",
+      "name": "驱动精灵",
+      "category": "驱动管理",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\MyDrivers\\DriverGenius",
+          "SOFTWARE\\WOW6432Node\\MyDrivers\\DriverGenius"
+        ]
+      },
+      "rules": [
+        {
+          "name": "驱动精灵 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "DGService.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "驱动精灵 - 提示弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "dgprompt.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "driver-talent",
+      "name": "驱动人生",
+      "category": "驱动管理",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\DriverTalent",
+          "SOFTWARE\\WOW6432Node\\DriverTalent"
+        ]
+      },
+      "rules": [
+        {
+          "name": "驱动人生 - 主程序弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "DTLSoft.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "驱动人生 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "DGService.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        }
+      ]
+    },
+    {
+      "id": "tencent-qq",
+      "name": "腾讯QQ",
+      "category": "即时通讯",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Tencent\\QQ",
+          "SOFTWARE\\WOW6432Node\\Tencent\\QQ"
+        ]
+      },
+      "rules": [
+        {
+          "name": "QQ - 腾讯新闻弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "QQNews.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "QQ - 新闻资讯",
+          "conditions": [{"type": "ProcessNameEquals", "value": "TencentNews.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "QQ - 迷你窗口广告",
+          "conditions": [
+            {"type": "ClassNameContains", "value": "TXGuiFoundation"},
+            {"type": "TitleContains", "value": "腾讯网"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "tencent-pcmgr",
+      "name": "腾讯电脑管家",
+      "category": "安全软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Tencent\\QQPCMgr",
+          "SOFTWARE\\WOW6432Node\\Tencent\\QQPCMgr"
+        ]
+      },
+      "rules": [
+        {
+          "name": "电脑管家 - 托盘弹窗",
+          "conditions": [{"type": "ClassNameContains", "value": "QQPC_Tray_Popup"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "电脑管家 - 弹窗进程",
+          "conditions": [{"type": "ProcessNameEquals", "value": "PopupWnd.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "kingsoft-duba",
+      "name": "金山毒霸",
+      "category": "安全软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Kingsoft\\Antivirus",
+          "SOFTWARE\\WOW6432Node\\Kingsoft\\Antivirus"
+        ]
+      },
+      "rules": [
+        {
+          "name": "金山毒霸 - 托盘弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "kxetray.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "金山毒霸 - 直播弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "kislive.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "金山毒霸 - 弹窗进程",
+          "conditions": [{"type": "ProcessNameEquals", "value": "popwndexe.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "金山毒霸 - 迷你推广",
+          "conditions": [{"type": "ProcessNameEquals", "value": "kminipromo.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "thunder",
+      "name": "迅雷",
+      "category": "下载工具",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Thunder Network\\ThunderOem",
+          "SOFTWARE\\WOW6432Node\\Thunder Network"
+        ]
+      },
+      "rules": [
+        {
+          "name": "迅雷 - 服务平台弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "xlserviceplatform.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "迅雷 - 平台弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "ThunderPlatform.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "迅雷 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "Thunder"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "iqiyi",
+      "name": "爱奇艺",
+      "category": "视频播放",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\IQIYI",
+          "SOFTWARE\\WOW6432Node\\iQIYI"
+        ]
+      },
+      "rules": [
+        {
+          "name": "爱奇艺 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "QyService.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "爱奇艺 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "iQIYI"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "youku",
+      "name": "优酷",
+      "category": "视频播放",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\youku",
+          "SOFTWARE\\WOW6432Node\\youku"
+        ]
+      },
+      "rules": [
+        {
+          "name": "优酷 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "youkuservice.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "优酷 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "Youku"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "baidu-netdisk",
+      "name": "百度网盘",
+      "category": "云存储",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Baidu\\BaiduNetdisk",
+          "SOFTWARE\\WOW6432Node\\Baidu\\BaiduNetdisk"
+        ]
+      },
+      "rules": [
+        {
+          "name": "百度网盘 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "BaiduNetdisk"},
+            {"type": "TitleContains", "value": "会员"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        },
+        {
+          "name": "百度网盘 - 新闻弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "baidunews.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "kugou",
+      "name": "酷狗音乐",
+      "category": "音乐播放",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\KuGou",
+          "SOFTWARE\\WOW6432Node\\KuGou"
+        ]
+      },
+      "rules": [
+        {
+          "name": "酷狗 - 更新弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "KugouUpdate.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "酷狗 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "KGService.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "酷狗 - 直播推广",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "KuGou"},
+            {"type": "TitleContains", "value": "直播"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 70
+        }
+      ]
+    },
+    {
+      "id": "kuwo",
+      "name": "酷我音乐",
+      "category": "音乐播放",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\kuwo",
+          "SOFTWARE\\WOW6432Node\\kuwo"
+        ]
+      },
+      "rules": [
+        {
+          "name": "酷我 - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "KwService.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "酷我 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "kuwo"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "netease-music",
+      "name": "网易云音乐",
+      "category": "音乐播放",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\NetEase\\CloudMusic",
+          "SOFTWARE\\WOW6432Node\\NetEase\\CloudMusic"
+        ]
+      },
+      "rules": [
+        {
+          "name": "网易云 - 上报进程",
+          "conditions": [{"type": "ProcessNameEquals", "value": "cloudmusic_reporter.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        },
+        {
+          "name": "网易云 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "CloudMusic"},
+            {"type": "TitleContains", "value": "会员"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 70
+        }
+      ]
+    },
+    {
+      "id": "flash-helper",
+      "name": "Flash Helper",
+      "category": "系统组件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\FlashHelper",
+          "SOFTWARE\\WOW6432Node\\FlashHelperService"
+        ]
+      },
+      "rules": [
+        {
+          "name": "Flash - 服务弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "FlashHelperService.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        },
+        {
+          "name": "Flash - 中心弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "FlashCenter.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 100
+        }
+      ]
+    },
+    {
+      "id": "aliwangwang",
+      "name": "阿里旺旺",
+      "category": "即时通讯",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Alibaba\\AliWangWang",
+          "SOFTWARE\\WOW6432Node\\Alibaba"
+        ]
+      },
+      "rules": [
+        {
+          "name": "旺旺 - 广告弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "AliWangWang"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "pdf-reader",
+      "name": "福昕PDF阅读器",
+      "category": "办公软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Foxit Software\\Foxit Reader",
+          "SOFTWARE\\WOW6432Node\\Foxit Software"
+        ]
+      },
+      "rules": [
+        {
+          "name": "福昕 - 广告弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "Foxit"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        },
+        {
+          "name": "福昕 - 升级弹窗",
+          "conditions": [{"type": "ProcessNameEquals", "value": "FoxitUpdater.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 90
+        }
+      ]
+    },
+    {
+      "id": "winrar",
+      "name": "WinRAR",
+      "category": "压缩工具",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\WinRAR",
+          "SOFTWARE\\WOW6432Node\\WinRAR"
+        ]
+      },
+      "rules": [
+        {
+          "name": "WinRAR - 广告弹窗",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "WinRAR.exe"},
+            {"type": "TitleContains", "value": "购买"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 60
+        }
+      ]
+    },
+    {
+      "id": "potplayer",
+      "name": "PotPlayer",
+      "category": "视频播放",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\DAUM\\PotPlayer64",
+          "SOFTWARE\\DAUM\\PotPlayer"
+        ]
+      },
+      "rules": [
+        {
+          "name": "PotPlayer - 更新弹窗",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "PotPlayer.exe"},
+            {"type": "TitleContains", "value": "Update"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 60
+        }
+      ]
+    },
+    {
+      "id": "qq-browser",
+      "name": "QQ浏览器",
+      "category": "浏览器",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Tencent\\QQBrowser",
+          "SOFTWARE\\WOW6432Node\\Tencent\\QQBrowser"
+        ]
+      },
+      "rules": [
+        {
+          "name": "QQ浏览器 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "QQBrowser.exe"},
+            {"type": "ClassNameContains", "value": "CefWebViewWnd"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "360-browser",
+      "name": "360浏览器",
+      "category": "浏览器",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\360Chrome",
+          "SOFTWARE\\WOW6432Node\\360Chrome"
+        ]
+      },
+      "rules": [
+        {
+          "name": "360浏览器 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "360Chrome.exe"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "huya-live",
+      "name": "虎牙直播",
+      "category": "直播平台",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\HuYa",
+          "SOFTWARE\\WOW6432Node\\HuYa"
+        ]
+      },
+      "rules": [
+        {
+          "name": "虎牙 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "HuYa"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "douyu-live",
+      "name": "斗鱼直播",
+      "category": "直播平台",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\DouYu",
+          "SOFTWARE\\WOW6432Node\\DouYu"
+        ]
+      },
+      "rules": [
+        {
+          "name": "斗鱼 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "DouYu"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "yy-live",
+      "name": "YY语音",
+      "category": "语音通讯",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\YY",
+          "SOFTWARE\\WOW6432Node\\duowan\\yy"
+        ]
+      },
+      "rules": [
+        {
+          "name": "YY - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "YY"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "id": "weixin",
+      "name": "微信",
+      "category": "即时通讯",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\Tencent\\WeChat",
+          "SOFTWARE\\WOW6432Node\\Tencent\\WeChat"
+        ]
+      },
+      "rules": [
+        {
+          "name": "微信 - 小程序推广",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "WeChat"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 60
+        }
+      ]
+    },
+    {
+      "id": "dingtalk",
+      "name": "钉钉",
+      "category": "办公软件",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\DingTalk",
+          "SOFTWARE\\WOW6432Node\\DingTalk"
+        ]
+      },
+      "rules": [
+        {
+          "name": "钉钉 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessPathContains", "value": "DingDing"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 70
+        }
+      ]
+    },
+    {
+      "id": "sogou-browser",
+      "name": "搜狗浏览器",
+      "category": "浏览器",
+      "detect": {
+        "registry": [
+          "SOFTWARE\\SogouExplorer",
+          "SOFTWARE\\WOW6432Node\\SogouExplorer"
+        ]
+      },
+      "rules": [
+        {
+          "name": "搜狗浏览器 - 推广弹窗",
+          "conditions": [
+            {"type": "ProcessNameEquals", "value": "SogouExplorer.exe"},
+            {"type": "TitleContains", "value": "推荐"}
+          ],
+          "logic": "And",
+          "action": "Close",
+          "priority": 80
+        }
+      ]
+    }
+  ]
+}
