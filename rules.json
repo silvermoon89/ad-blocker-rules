@@ -15,6 +15,13 @@
       },
       "rules": [
         {
+          "name": "搜狗输入法 - 应用精选广告",
+          "conditions": [{"type": "ProcessNameEquals", "value": "biz_aurfx.exe"}],
+          "logic": "And",
+          "action": "Close",
+          "priority": 60
+        },
+        {
           "name": "搜狗输入法 - 云推广弹窗",
           "conditions": [{"type": "ProcessNameEquals", "value": "SogouCloud.exe"}],
           "logic": "And",
