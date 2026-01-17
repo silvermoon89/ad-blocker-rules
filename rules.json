@@ -19,6 +19,13 @@
           "priority": 100
         },
         {
+          "name": "搜狗输入法 - 帮助弹窗广告",
+          "conditions": [{ "type": "ProcessNameEquals", "value": "biz_helper.exe" }],
+          "logic": "And",
+          "action": "KillProcess",
+          "priority": 100
+        },
+        {
           "name": "搜狗输入法 - 云推广弹窗",
           "conditions": [{ "type": "ProcessNameEquals", "value": "SogouCloud.exe" }],
           "logic": "And",
